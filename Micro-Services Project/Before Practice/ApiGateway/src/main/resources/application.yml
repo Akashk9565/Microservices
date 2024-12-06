@@ -1,0 +1,24 @@
+server:
+  port: 9999
+  
+  
+eureka:
+  instance:
+    hostname: localhost
+    
+    
+spring:
+  application:
+    name: ApiGateway
+    
+  cloud:
+    gateway:
+      routes:
+      - id: UserService
+        uri: lb://UserService
+        predicates:
+        - Path=/user/**
+      - id: ContactService
+        uri: lb://ContactService
+        predicates:
+        - Path=/contact/**
